@@ -10,6 +10,7 @@ import { configCompressPlugin } from './compress';
 import { configHtmlPlugin } from './html';
 import { configMockPlugin } from './mock';
 import { configSvgIconsPlugin } from './svgSprite';
+import { configThemePlugin } from './theme';
 import { configVisualizerConfig } from './visualizer';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 interface Options {
@@ -39,6 +40,9 @@ async function createPlugins({ isBuild, root, enableMock, compress, enableAnalyz
 
   // vite-plugin-purge-icons
   vitePlugins.push(purgeIcons());
+
+  // vite-plugin-theme
+  vitePlugins.push(configThemePlugin(isBuild));
 
   // The following plugins only work in the production environment
   if (isBuild) {
